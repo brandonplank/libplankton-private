@@ -24,8 +24,6 @@
 #include <unistd.h>
 #include "jelbrekLib.h"
 
-FILE *log_file = NULL;
-
 void att(mach_port_t port);
 void proc_name(int pid, char *buf, int size);
 void give_info(void);
@@ -34,9 +32,6 @@ void get_number_of_threads(mach_port_t port);
 size_t read_from_task(uint64_t addr, void *buf, size_t size, mach_port_t port)
 {
     unsigned char buffer[size];
-    if (!MACH_PORT_VALID(tfp0)) {
-        return 0;
-    }
     kern_return_t ret;
     vm_size_t remainder = size,
               bytes_read = 0;
@@ -50,13 +45,13 @@ size_t read_from_task(uint64_t addr, void *buf, size_t size, mach_port_t port)
         ret = mach_vm_read_overwrite(port, addr, size, (mach_vm_address_t)&((char*)buf)[bytes_read], (mach_vm_size_t*)&size);
         if(ret != KERN_SUCCESS || size == 0)
         {
-            fprintf(stderr, "vm_read error: %s", mach_error_string(ret));
-            break;
+            fprintf(stderr, "mach_vm_read error: %s\n", mach_error_string(ret));
+            return -1;
         }
         bytes_read += size;
         addr += size;
     }
-    printf("[+] vm_read_overwrite success!\n");
+    printf("[+] mach_vm_read_overwrite success!\n");
     int a = 0;
     for (int i = 0; i < size; i+=8){
         printf("0x%.8llx: %.02x%.02x%.02x%.02x %.02x%.02x%.02x%.02x\n",addr+i,buffer[a],buffer[a+1],buffer[a+2],buffer[a+3],buffer[a+4],buffer[a+5],buffer[a+6],buffer[a+7]);
@@ -67,7 +62,6 @@ size_t read_from_task(uint64_t addr, void *buf, size_t size, mach_port_t port)
 
 uint64_t rf(uint64_t addr, mach_port_t port, uint64_t size)
 {
-    read_from_task(addr, &size, sizeof(size), port);
     return read_from_task(addr, &size, sizeof(size), port)==sizeof(size)?size:0xdeadbeefdeadbeef;
 }
 
@@ -183,7 +177,7 @@ void set_and_check_reg(mach_port_t port, int thread_number, uint64_t value, int 
 
 
 void regset(char reg[], uint64_t value, mach_port_t port, int thread_number){
-    printf("[*] Setting register with value: 0x%16llx\n", value);
+    printf("[*] Setting register %s with value: 0x%llu\n", reg, value);
     get_thread(port, thread_number);
     clear_register_vars();
     
