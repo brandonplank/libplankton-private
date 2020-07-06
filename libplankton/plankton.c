@@ -17,7 +17,6 @@
 #include <sys/proc.h>
 #include <ctype.h>
 #include <stdbool.h>
-#include <Foundation/Foundation.h>
 #include "plankton.h"
 #include "kernel_base.h"
 #include <termios.h>
@@ -183,15 +182,10 @@ void set_and_check_reg(mach_port_t port, int thread_number, uint64_t value, int 
 
 
 
-void regset(char reg[], uint64_t value, mach_port_t port){
-    int thread_number = 0;
-    task_threads(port, &thread_list, &thread_count);
-    printf("[+] Number of threads in process: %x\n",thread_count);
+void regset(char reg[], uint64_t value, mach_port_t port, int thread_number){
+    printf("[*] Setting register with value: 0x%16llx\n", value);
+    get_thread(port, thread_number);
     clear_register_vars();
-    
-    printf("Enter the thread to attach to >> ");
-    scanf("%d",&thread_number);
-    printf("\x1b[0m");
     
     if (strcmp(reg,"X0")==0 || strcmp(reg,"x0")==0){
         set_and_check_reg(port, thread_number, value, 0, NULL);
@@ -290,7 +284,7 @@ uint64_t get_pid_of_proc(const char *process_name)
 }
 
 void listreg(mach_port_t port, int thread_number){
-    printf("[*] Listing registers with port: 0x%d and thread: %d", port, thread_number);
+    printf("[*] Listing registers with port: 0x%d and thread: %d\n", port, thread_number);
     
     // get register state from thread
     get_thread(port, thread_number);

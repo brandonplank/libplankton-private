@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8813EB5324B266F0004E915E /* libplankton.h in Headers */ = {isa = PBXBuildFile; fileRef = 8813EB5124B266F0004E915E /* libplankton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8813EB6124B2676C004E915E /* plankton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8813EB5A24B2676C004E915E /* plankton.m */; };
+		8813EB6124B2676C004E915E /* plankton.c in Sources */ = {isa = PBXBuildFile; fileRef = 8813EB5A24B2676C004E915E /* plankton.c */; };
 		8813EB6224B2676C004E915E /* mach_vm.h in Headers */ = {isa = PBXBuildFile; fileRef = 8813EB5B24B2676C004E915E /* mach_vm.h */; };
 		8813EB6424B2676C004E915E /* kernel_base.m in Sources */ = {isa = PBXBuildFile; fileRef = 8813EB5D24B2676C004E915E /* kernel_base.m */; };
 		8813EB6524B2676C004E915E /* kernel_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 8813EB5E24B2676C004E915E /* kernel_base.h */; };
@@ -85,7 +85,7 @@
 		8813EB4E24B266F0004E915E /* libplankton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libplankton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8813EB5124B266F0004E915E /* libplankton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libplankton.h; sourceTree = "<group>"; };
 		8813EB5224B266F0004E915E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8813EB5A24B2676C004E915E /* plankton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plankton.m; sourceTree = "<group>"; };
+		8813EB5A24B2676C004E915E /* plankton.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = plankton.c; sourceTree = "<group>"; };
 		8813EB5B24B2676C004E915E /* mach_vm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_vm.h; sourceTree = "<group>"; };
 		8813EB5D24B2676C004E915E /* kernel_base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kernel_base.m; sourceTree = "<group>"; };
 		8813EB5E24B2676C004E915E /* kernel_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_base.h; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 			children = (
 				8813EBFC24B28817004E915E /* Utils */,
 				8813EB6724B284D8004E915E /* Engine */,
-				8813EB5A24B2676C004E915E /* plankton.m */,
+				8813EB5A24B2676C004E915E /* plankton.c */,
 				8813EC0124B2888B004E915E /* plankton.h */,
 				8813EB5124B266F0004E915E /* libplankton.h */,
 				8813EB5224B266F0004E915E /* Info.plist */,
@@ -467,7 +467,7 @@
 				8813EBD024B284ED004E915E /* lzfse_encode_base.c in Sources */,
 				8813EBE224B284ED004E915E /* amfid_tools.m in Sources */,
 				8813EBEE24B284ED004E915E /* amfid.m in Sources */,
-				8813EB6124B2676C004E915E /* plankton.m in Sources */,
+				8813EB6124B2676C004E915E /* plankton.c in Sources */,
 				8813EBDF24B284ED004E915E /* snapshot_utils.m in Sources */,
 				8813EBE724B284ED004E915E /* offsetof.c in Sources */,
 				8813EBE524B284ED004E915E /* kernelSymbolFinder.c in Sources */,
